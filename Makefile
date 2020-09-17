@@ -1,13 +1,14 @@
-# $NetBSD: Makefile,v 1.17 2019/12/24 06:00:24 schmonz Exp $
+# $NetBSD: Makefile,v 1.19 2020/08/31 18:11:27 wiz Exp $
 #
 
 DISTNAME=	etckeeper_1.18.12.orig
 PKGNAME=	${DISTNAME:S/_/-/:S/.orig$//}
+PKGREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_DEBIAN:=pool/main/e/etckeeper/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://etckeeper.branchable.com/
+HOMEPAGE=	https://etckeeper.branchable.com/
 COMMENT=	Store /etc in git, mercurial, bzr or darcs
 LICENSE=	gnu-gpl-v2
 
