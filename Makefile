@@ -1,32 +1,31 @@
-# $NetBSD: Makefile,v 1.25 2022/06/28 11:35:56 wiz Exp $
+# $NetBSD: Makefile,v 1.27 2022/12/22 13:40:09 schmonz Exp $
 #
 
-DISTNAME=	etckeeper_1.18.16.orig
-PKGNAME=	${DISTNAME:S/_/-/:S/.orig$//}
-PKGREVISION=	2
-CATEGORIES=	sysutils
-MASTER_SITES=	${MASTER_SITE_DEBIAN:=pool/main/e/etckeeper/}
+DISTNAME=		etckeeper_1.18.18.orig
+PKGNAME=		${DISTNAME:S/_/-/:S/.orig$//}
+CATEGORIES=		sysutils
+MASTER_SITES=		${MASTER_SITE_DEBIAN:=pool/main/e/etckeeper/}
 
-MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://etckeeper.branchable.com/
-COMMENT=	Store /etc in git, mercurial, bzr or darcs
-LICENSE=	gnu-gpl-v2
+MAINTAINER=		schmonz@NetBSD.org
+HOMEPAGE=		https://etckeeper.branchable.com/
+COMMENT=		Store /etc in git, mercurial, bzr or darcs
+LICENSE=		gnu-gpl-v2
 
-WRKSRC=		${WRKDIR}/${PKGNAME_NOREV:S/.1$//}
-USE_LANGUAGES=	# none
-USE_TOOLS+=	gawk perl:run
+WRKSRC=			${WRKDIR}/${PKGNAME_NOREV:S/.1$//}
+USE_LANGUAGES=		# none
+USE_TOOLS+=		gawk perl:run
 
-NO_BUILD=	yes
-AUTO_MKDIRS=	yes
+NO_BUILD=		yes
+AUTO_MKDIRS=		yes
 
-BUILD_DEFS+=	VARBASE
+BUILD_DEFS+=		VARBASE
 
 .include "cf-files.mk"
 
 PKG_SYSCONFSUBDIR=	etckeeper
-OWN_DIRS+=		${VARBASE}/cache/etckeeper
-OWN_DIRS+=		${PKG_SYSCONFDIR}
-OWN_DIRS+=		${CF_FILES:H:O:u:S@^@${PKG_SYSCONFDIR}/@}
+MAKE_DIRS+=		${VARBASE}/cache/etckeeper
+MAKE_DIRS+=		${PKG_SYSCONFDIR}
+MAKE_DIRS+=		${CF_FILES:H:O:u:S@^@${PKG_SYSCONFDIR}/@}
 
 EGDIR=			${PREFIX}/share/examples/etckeeper
 
@@ -65,7 +64,7 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/README.md \
 			${DESTDIR}${PREFIX}/share/doc/etckeeper/README.md
 	${INSTALL_DATA} ${WRKSRC}/bash_completion \
-			${DESTDIR}${PREFIX}/share/bash-completion.d/etckeeper
+			${DESTDIR}${PREFIX}/share/bash-completion/completions/etckeeper
 	${INSTALL_DATA} ${WRKSRC}/zsh_completion \
 			${DESTDIR}${PREFIX}/share/zsh/site-functions/_etckeeper
 
